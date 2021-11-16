@@ -5,7 +5,7 @@ import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class UpdateDemo1 {
+public class DirtyCheckingDemo {
 
     public static void main(String[] args) {
 
@@ -16,7 +16,9 @@ public class UpdateDemo1 {
 
             Student pethum = session.find(Student.class, 2);
             System.out.println(pethum);
-            pethum.setContactNumber("070-4561237");
+            pethum.setContactNumber("011-123456789");
+            System.out.println("Changed the phone number");
+            session.detach(pethum);
 
             session.getTransaction().commit();
 
