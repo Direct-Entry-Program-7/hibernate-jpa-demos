@@ -5,6 +5,8 @@ import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.io.Serializable;
+
 public class SaveDemo {
 
     public static void main(String[] args) {
@@ -14,8 +16,9 @@ public class SaveDemo {
 
             session.beginTransaction();
 
-            Student dulanga = new Student(1, "Dulanga", "Galle", "077-1234567");
-            session.save(dulanga);
+            Student sovis = new Student(3, "Sovis", "Dehiwala", "077-1234567");
+            Serializable id = session.save(sovis);
+            System.out.println(id);
 
             session.getTransaction().commit();
 
