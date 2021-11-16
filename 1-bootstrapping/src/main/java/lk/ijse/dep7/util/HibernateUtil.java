@@ -9,23 +9,23 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
 
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    private static SessionFactory buildSessionFactory(){
+    private static SessionFactory buildSessionFactory() {
         StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
-                .configure( "hibernate.cfg.xml" )
+                .configure("hibernate.cfg.xml")
                 .build();
 
-        Metadata metadata = new MetadataSources( standardRegistry )
+        Metadata metadata = new MetadataSources(standardRegistry)
                 .getMetadataBuilder()
-                .applyImplicitNamingStrategy( ImplicitNamingStrategyJpaCompliantImpl.INSTANCE )
+                .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
 
         return metadata.getSessionFactoryBuilder()
                 .build();
     }
 
-    public static SessionFactory getSessionFactory(){
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
