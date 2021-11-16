@@ -5,7 +5,7 @@ import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class HibernateDemo {
+public class SaveDemo {
 
     public static void main(String[] args) {
 
