@@ -1,4 +1,4 @@
-package dep7;
+package lk.ijse.dep7;
 
 import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;

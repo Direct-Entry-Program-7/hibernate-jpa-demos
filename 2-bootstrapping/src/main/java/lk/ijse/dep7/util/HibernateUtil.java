@@ -1,4 +1,4 @@
-package dep7.util;
+package lk.ijse.dep7.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
