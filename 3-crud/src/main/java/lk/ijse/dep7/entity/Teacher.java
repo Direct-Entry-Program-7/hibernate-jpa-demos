@@ -10,8 +10,9 @@ public class Teacher implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
+    @Column(nullable = false)
     private String name;
-    @Column(name = "contact_number")
+    @Column(name = "contact_number", nullable = false)
     private String contactNumber;
 
     public Teacher() {
