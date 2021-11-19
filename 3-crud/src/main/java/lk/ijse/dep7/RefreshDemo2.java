@@ -15,16 +15,20 @@ public class RefreshDemo2 {
             session.beginTransaction();
 
             // transient state (new state), detached state
-//            Student student = new Student(2, "Aruni", "Matara", "011-1234567");
-//            session.refresh(student);
-
-            Student student = session.get(Student.class, 1);
-            session.evict(student);
-            System.out.println("Student has been detached");
+            Student student = new Student(2, "Dinusha", "Galle", "011-1234567");
+            System.out.println(student);
             System.out.println("Is student inside the cache? " + session.contains(student));
             session.refresh(student);
-            System.out.println("Student has been refreshed");
+            System.out.println(student);
             System.out.println("Is student inside the cache? " + session.contains(student));
+
+//            Student student = session.get(Student.class, 1);
+//            session.evict(student);
+//            System.out.println("Student has been detached");
+//            System.out.println("Is student inside the cache? " + session.contains(student));
+//            session.refresh(student);
+//            System.out.println("Student has been refreshed");
+//            System.out.println("Is student inside the cache? " + session.contains(student));
 
             session.getTransaction().commit();
 
