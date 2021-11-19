@@ -15,7 +15,7 @@ public class RefreshDemo2 {
 
             session.beginTransaction();
 
-            // transient state (new state), detached state
+            // transient state (new state), detached state (hibernate thinks) (error)
 //            Student student = new Student(2, "Dinusha", "Galle", "011-1234567");
 //            System.out.println(student);
 //            System.out.println("Is student inside the cache? " + session.contains(student));
@@ -23,6 +23,7 @@ public class RefreshDemo2 {
 //            System.out.println(student);
 //            System.out.println("Is student inside the cache? " + session.contains(student));
 
+            // detached state (okay)
 //            Student student = session.get(Student.class, 1);
 //            session.evict(student);
 //            System.out.println("Student has been detached");
@@ -31,11 +32,11 @@ public class RefreshDemo2 {
 //            System.out.println("Student has been refreshed");
 //            System.out.println("Is student inside the cache? " + session.contains(student));
 
-            // new/transient state
+            // new/transient state (error)
 //            Teacher dinusha = new Teacher("Dinusha", "011-1423456");
 //            session.refresh(dinusha);
 
-            // removed state
+            // removed state (error)
             Student student = session.get(Student.class, 1);
             session.remove(student);
             System.out.println("Student has been changed to removed state");
