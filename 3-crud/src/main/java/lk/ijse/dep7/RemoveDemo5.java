@@ -17,16 +17,15 @@ public class RemoveDemo5 {
 
             session.beginTransaction();
 
-            Teacher chandima = session.get(Teacher.class, 2);
-            session.remove(chandima);
-            System.out.println(chandima);
-            session.persist(chandima);
-            System.out.println(chandima);
-//            Serializable id = session.save(chandima);
-//            System.out.println(id);
-//            System.out.println(chandima);
+            Student student = new Student(3, "Aruni", "Matara", "055-1234567");
+            session.save(student);
+            System.out.println("Saved");        // Saved
+            session.remove(student);
+            System.out.println("Deleted");      // Deleted
+            session.persist(student);
+            System.out.println("Persisted");    // Persisted
 
-            session.getTransaction().commit();
+            session.getTransaction().commit();  // INSERT INTO
 
         }
 

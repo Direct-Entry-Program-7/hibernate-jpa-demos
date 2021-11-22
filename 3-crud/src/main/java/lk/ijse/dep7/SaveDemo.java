@@ -16,7 +16,7 @@ public class SaveDemo {
 
             session.beginTransaction();
 
-            Student sovis = new Student(3, "Sovis", "Dehiwala", "077-1234567");
+            Student sovis = new Student(1, "Sovis", "Dehiwala", "077-1234567");
             Serializable id = session.save(sovis);
             System.out.println(id);
 
