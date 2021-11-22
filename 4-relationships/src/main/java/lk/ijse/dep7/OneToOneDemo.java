@@ -13,6 +13,7 @@ public class OneToOneDemo {
 
             session.beginTransaction();
 
+            System.out.println(session);
 
             session.getTransaction().commit();
 
