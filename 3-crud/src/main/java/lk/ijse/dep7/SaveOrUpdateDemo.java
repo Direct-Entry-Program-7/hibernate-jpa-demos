@@ -14,10 +14,15 @@ public class SaveOrUpdateDemo {
 
             session.beginTransaction();
 
-            Student student = new Student(4, "Manoj", "Galle", "011-1234567");
-            session.remove(student);
+            Student manoj = new Student(4, "Manoj", "Galle", "011-1234567");
+            Student sovis = new Student(1, "Sovis", "Colombo", "011-1234567");
 
-            session.getTransaction().commit();
+            session.saveOrUpdate(manoj);    // SELECT
+            System.out.println("Manoj has been saved");
+            session.saveOrUpdate(sovis);    // SELECT
+            System.out.println("Sovis has been updated");
+
+            session.getTransaction().commit();  // INSERT INTO, UPDATE
 
         }
 
