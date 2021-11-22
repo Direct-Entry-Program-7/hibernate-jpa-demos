@@ -12,8 +12,13 @@ public class GetReferenceDemo {
         try(SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
             Session session = sessionFactory.openSession()){
 
-            Student student = session.getReference(Student.class, 1);
-            System.out.println(student);
+            // Lazy Fetching
+            Student student = session.getReference(Student.class, 25);
+            System.out.println(student.getId());
+
+            // Eager Fetching
+            Student student1 = session.find(Student.class, 25);
+            System.out.println(student.getId());
 
         }
 
