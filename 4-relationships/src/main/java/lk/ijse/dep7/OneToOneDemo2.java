@@ -24,7 +24,6 @@ public class OneToOneDemo2 {
 
             e001.setSpouse(s001);
 
-
             session.getTransaction().commit();
 
         }
