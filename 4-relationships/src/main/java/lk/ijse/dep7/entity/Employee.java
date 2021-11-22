@@ -61,6 +61,7 @@ public class Employee implements Serializable {
     }
 
     public void setSpouse(Spouse spouse) {
+        spouse.setEmployee(this);
         this.spouse = spouse;
     }
 
@@ -70,7 +71,6 @@ public class Employee implements Serializable {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", spouse=" + spouse +
                 '}';
     }
 }
