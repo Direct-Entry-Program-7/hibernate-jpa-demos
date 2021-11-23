@@ -1,13 +1,12 @@
 package lk.ijse.dep7;
 
 import lk.ijse.dep7.entity.Employee;
-import lk.ijse.dep7.entity.Spouse;
 import lk.ijse.dep7.entity.Vehicle;
 import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class OneToOneDemo3 {
+public class OneToOneDemo4 {
 
     public static void main(String[] args) {
 
@@ -16,15 +15,14 @@ public class OneToOneDemo3 {
 
             session.beginTransaction();
 
+            Vehicle v002 = session.get(Vehicle.class, "V002");
+            System.out.println(v002);
+
             Employee e002 = session.get(Employee.class, "E002");
+            System.out.println(e002.getVehicle());
 
-            Vehicle v001 = new Vehicle("V001", "Car");
-            Vehicle v002 = new Vehicle("V002", "Bike", e002);
-            Vehicle v003 = new Vehicle("V003", "Van");
-
-            session.save(v001);
-            session.persist(v002);
-            session.save(v003);
+            Employee e001 = session.get(Employee.class, "E001");
+            System.out.println(e001.getVehicle());
 
             session.getTransaction().commit();
 
