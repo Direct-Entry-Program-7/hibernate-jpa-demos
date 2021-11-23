@@ -13,7 +13,8 @@ public class Employee implements Serializable {
     @Column(nullable = false)
     private String address;
 
-    @OneToOne(mappedBy = "employee")
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @OneToOne(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Spouse spouse;
 
     public Employee() {
@@ -30,6 +31,7 @@ public class Employee implements Serializable {
         this.name = name;
         this.address = address;
         this.spouse = spouse;
+        this.spouse.setEmployee(this);
     }
 
     public String getId() {
