@@ -23,6 +23,7 @@ public class CascadeMergeDemo {
 
             /* We are going to revise this very soon */
             session.detach(e004);
+            session.detach(spouse);
             Employee clonedE004 = (Employee) session.merge(e004);
             Spouse clonedSpouse = clonedE004.getSpouse();
 

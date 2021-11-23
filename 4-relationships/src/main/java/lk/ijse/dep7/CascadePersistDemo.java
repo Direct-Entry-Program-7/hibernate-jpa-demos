@@ -20,8 +20,8 @@ public class CascadePersistDemo {
             //s004.setEmployee(e004);
 
             /* If we use CascadeType.PERSIST then it is going to work with only JPA API */
-//            session.save(e004);
-            session.persist(e004);
+            session.save(e004);
+//            session.persist(e004);
 
             session.getTransaction().commit();
 
