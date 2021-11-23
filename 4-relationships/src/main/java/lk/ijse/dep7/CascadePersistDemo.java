@@ -19,7 +19,7 @@ public class CascadePersistDemo {
             Employee e004 = new Employee("E004", "Gayal", "Colombo", s004);
             //s004.setEmployee(e004);
 
-            /* If we use Cascade.PERSIST then it is going to work with only JPA API */
+            /* If we use CascadeType.PERSIST then it is going to work with only JPA API */
 //            session.save(e004);
             session.persist(e004);
 

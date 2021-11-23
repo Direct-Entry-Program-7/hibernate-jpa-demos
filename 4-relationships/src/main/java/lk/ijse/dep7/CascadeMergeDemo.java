@@ -6,7 +6,7 @@ import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class CascadeDetachDemo {
+public class CascadeMergeDemo {
 
     public static void main(String[] args) {
 
@@ -21,12 +21,18 @@ public class CascadeDetachDemo {
             System.out.println("Is E004 inside the context? " + session.contains(e004));
             System.out.println("Is E004's spouse inside the context? " + session.contains(spouse));
 
-            /* If we use CascadeType.DETACH then it is going to work with both native hibernate API and JPA API */
-            session.evict(e004);
-//            session.detach(e004);
+            /* We are going to revise this very soon */
+            session.detach(e004);
+            Employee clonedE004 = (Employee) session.merge(e004);
+            Spouse clonedSpouse = clonedE004.getSpouse();
 
             System.out.println("Is E004 inside the context? " + session.contains(e004));
             System.out.println("Is E004's spouse inside the context? " + session.contains(spouse));
+
+            System.out.println("Is E004's Clone inside the context? " + session.contains(clonedE004));
+            System.out.println("Is E004's spouse's Clone inside the context? " + session.contains(clonedSpouse));
+
+            System.out.println("Has spouse been cloned? " + (clonedSpouse != spouse));
 
             session.getTransaction().commit();
 

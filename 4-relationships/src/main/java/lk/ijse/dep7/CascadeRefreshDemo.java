@@ -6,7 +6,7 @@ import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class CascadeRemoveDemo {
+public class CascadeRefreshDemo {
 
     public static void main(String[] args) {
 
@@ -16,10 +16,18 @@ public class CascadeRemoveDemo {
             session.beginTransaction();
 
             Employee e004 = session.get(Employee.class, "E004");
+            Spouse spouse = e004.getSpouse();
 
-            /* If we use CascadeType.REMOVE then it is going to work with both native hibernate API and JPA API */
-//            session.delete(e004);
-            session.remove(e004);
+            System.out.println(e004);
+            System.out.println(spouse);
+            e004.setAddress("Moratuwa");
+            spouse.setName("Seneha Latha");
+            System.out.println(e004);
+            System.out.println(spouse);
+
+            session.refresh(e004);
+            System.out.println(e004);
+            System.out.println(spouse);
 
             session.getTransaction().commit();
 
