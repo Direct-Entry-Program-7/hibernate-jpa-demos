@@ -87,6 +87,7 @@ public class Employee implements Serializable {
     }
 
     public void setVehicle(Vehicle vehicle) {
+        vehicle.setEmployee(this);
         this.vehicle = vehicle;
     }
 

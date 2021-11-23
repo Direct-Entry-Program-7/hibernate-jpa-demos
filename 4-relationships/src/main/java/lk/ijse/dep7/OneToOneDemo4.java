@@ -22,7 +22,9 @@ public class OneToOneDemo4 {
             System.out.println(e002.getVehicle());
 
             Employee e001 = session.get(Employee.class, "E001");
-            System.out.println(e001.getVehicle());
+            //v002.setEmployee(e001);
+
+            e002.setVehicle(v002);
 
             session.getTransaction().commit();
 
