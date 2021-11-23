@@ -21,7 +21,7 @@ public class Employee implements Serializable {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Spouse spouse;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.PERSIST)
     private Vehicle vehicle;
 
     public Employee() {
@@ -41,12 +41,22 @@ public class Employee implements Serializable {
         this.spouse.setEmployee(this);
     }
 
+    public Employee(String id, String name, String address, Vehicle vehicle) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.vehicle = vehicle;
+        this.vehicle.setEmployee(this);
+    }
+
     public Employee(String id, String name, String address, Spouse spouse, Vehicle vehicle) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.spouse = spouse;
         this.vehicle = vehicle;
+        this.spouse.setEmployee(this);
+        this.vehicle.setEmployee(this);
     }
 
     public String getId() {
