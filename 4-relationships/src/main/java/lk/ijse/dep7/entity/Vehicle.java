@@ -10,6 +10,11 @@ public class Vehicle implements Serializable {
     private String number;
     @Column(nullable = false)
     private String type;
+    @OneToOne
+    @JoinTable(name="vehicle_employee",
+                joinColumns = @JoinColumn(name="number", referencedColumnName = "number"),
+                inverseJoinColumns = @JoinColumn(name="employee_id", referencedColumnName = "id", unique = true))
+    private Employee employee;
 
     public Vehicle() {
     }
@@ -17,6 +22,12 @@ public class Vehicle implements Serializable {
     public Vehicle(String number, String type) {
         this.number = number;
         this.type = type;
+    }
+
+    public Vehicle(String number, String type, Employee employee) {
+        this.number = number;
+        this.type = type;
+        this.employee = employee;
     }
 
     public String getNumber() {
@@ -35,4 +46,20 @@ public class Vehicle implements Serializable {
         this.type = type;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "number='" + number + '\'' +
+                ", type='" + type + '\'' +
+                ", employee=" + employee +
+                '}';
+    }
 }
