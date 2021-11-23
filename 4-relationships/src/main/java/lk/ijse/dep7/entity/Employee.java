@@ -16,7 +16,7 @@ public class Employee implements Serializable {
     private String address;
 
 //    @Cascade(org.hibernate.annotations.CascadeType.)
-    @OneToOne(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.DETACH})
     private Spouse spouse;
 
     public Employee() {
