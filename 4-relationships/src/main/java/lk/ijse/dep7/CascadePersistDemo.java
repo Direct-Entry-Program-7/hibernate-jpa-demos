@@ -6,7 +6,7 @@ import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class OneToOneDemo3 {
+public class CascadePersistDemo {
 
     public static void main(String[] args) {
 
@@ -19,7 +19,9 @@ public class OneToOneDemo3 {
             Employee e004 = new Employee("E004", "Gayal", "Colombo", s004);
             //s004.setEmployee(e004);
 
-            session.save(e004);
+            /* If we use Cascade.PERSIST then it is going to work with only JPA API */
+//            session.save(e004);
+            session.persist(e004);
 
             session.getTransaction().commit();
 

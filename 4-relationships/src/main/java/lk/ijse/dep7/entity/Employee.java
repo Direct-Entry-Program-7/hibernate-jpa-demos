@@ -1,5 +1,7 @@
 package lk.ijse.dep7.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,7 +15,7 @@ public class Employee implements Serializable {
     @Column(nullable = false)
     private String address;
 
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @Cascade(org.hibernate.annotations.CascadeType.)
     @OneToOne(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Spouse spouse;
 
