@@ -2,6 +2,7 @@ package lk.ijse.dep7.util;
 
 import lk.ijse.dep7.entity.Employee;
 import lk.ijse.dep7.entity.Spouse;
+import lk.ijse.dep7.entity.Vehicle;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -21,6 +22,7 @@ public class HibernateUtil {
         Metadata metadata = new MetadataSources(standardRegistry)
                 .addAnnotatedClass(Employee.class)
                 .addAnnotatedClass(Spouse.class)
+                .addAnnotatedClass(Vehicle.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
