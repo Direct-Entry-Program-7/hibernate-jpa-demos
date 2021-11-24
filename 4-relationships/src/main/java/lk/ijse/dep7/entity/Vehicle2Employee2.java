@@ -42,17 +42,17 @@ public class Vehicle2Employee2 implements Serializable {
         return vehicle2;
     }
 
-    public void setVehicle2(Vehicle2 vehicle2) {
-        this.vehicle2 = vehicle2;
-    }
+//    public void setVehicle2(Vehicle2 vehicle2) {
+//        this.vehicle2 = vehicle2;
+//    }
 
     public Employee2 getEmployee2() {
         return employee2;
     }
 
-    public void setEmployee2(Employee2 employee2) {
-        this.employee2 = employee2;
-    }
+//    public void setEmployee2(Employee2 employee2) {
+//        this.employee2 = employee2;
+//    }
 
     public Vehicle2Employee2PK getVehicle2Employee2PK() {
         return vehicle2Employee2PK;
