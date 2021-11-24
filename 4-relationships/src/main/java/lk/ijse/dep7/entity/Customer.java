@@ -14,7 +14,7 @@ public class Customer implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Order> orderList;
 
     public Customer() {
@@ -80,7 +80,7 @@ public class Customer implements Serializable {
         this.orderList.add(order);
     }
 
-    // @PrePersist, @PostPersist, @PreRemove, @PostRemove, @PreLoad, @PostLoad
+    // @PrePersist, @PostPersist, @PreRemove, @PostRemove, @PreLoad, @PostLoad, @PreUpdate, @PostUpdate
     @PrePersist
     private void beforePersist(){
         orderList.forEach(o -> o.setCustomer(this));
