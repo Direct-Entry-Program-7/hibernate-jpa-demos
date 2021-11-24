@@ -1,5 +1,6 @@
 package lk.ijse.dep7.util;
 
+import lk.ijse.dep7.entity.Class;
 import lk.ijse.dep7.entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -28,6 +29,8 @@ public class HibernateUtil {
                 .addAnnotatedClass(Order.class)
                 .addAnnotatedClass(Customer2.class)
                 .addAnnotatedClass(Order2.class)
+                .addAnnotatedClass(Class.class)
+                .addAnnotatedClass(Student.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
