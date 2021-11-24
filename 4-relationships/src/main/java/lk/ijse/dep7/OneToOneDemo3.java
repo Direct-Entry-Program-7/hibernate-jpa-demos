@@ -23,7 +23,7 @@ public class OneToOneDemo3 {
             Vehicle v003 = new Vehicle("V003", "Van");
 
             session.save(v001);
-            session.persist(v002);
+            session.save(v002);
             session.save(v003);
 
             session.getTransaction().commit();

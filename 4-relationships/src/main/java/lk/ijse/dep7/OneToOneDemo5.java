@@ -15,8 +15,9 @@ public class OneToOneDemo5 {
 
             session.beginTransaction();
 
-            Vehicle v004 = new Vehicle("V004", "Car");
-            Employee e005 = new Employee("E005", "Hamza", "Colombo", v004);
+            //Vehicle v004 = new Vehicle("V004", "Car");
+            Vehicle v001 = session.get(Vehicle.class, "V001");
+            Employee e005 = new Employee("E005", "Hamza", "Colombo", v001);
 
             session.persist(e005);
 

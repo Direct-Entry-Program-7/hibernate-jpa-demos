@@ -1,29 +1,25 @@
 package lk.ijse.dep7.entity;
 
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-@Table(name = "spouse")
-public class Spouse implements Serializable {
+@Table(name = "employee2")
+public class Employee2 implements Serializable {
     @Id
     private String id;
     @Column(nullable = false)
     private String name;
-    @OneToOne
-    @JoinColumn(name="employee_id", referencedColumnName = "id", nullable = false, unique = true)
-    private Employee employee;
+    @Column(nullable = false)
+    private String address;
 
-    public Spouse() {
+    public Employee2() {
     }
 
-    public Spouse(String id, String name, Employee employee) {
+    public Employee2(String id, String name, String address) {
         this.id = id;
         this.name = name;
-        this.employee = employee;
+        this.address = address;
     }
 
     public String getId() {
@@ -42,20 +38,20 @@ public class Spouse implements Serializable {
         this.name = name;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
-        return "Spouse{" +
+        return "Employee{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", employee=" + employee +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
