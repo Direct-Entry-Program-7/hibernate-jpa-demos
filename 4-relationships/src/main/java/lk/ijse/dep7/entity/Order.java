@@ -11,7 +11,7 @@ public class Order implements Serializable {
     private String id;
     @Column(nullable = false)
     private Date date;
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
