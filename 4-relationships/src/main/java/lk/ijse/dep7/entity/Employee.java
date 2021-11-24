@@ -18,7 +18,7 @@ public class Employee implements Serializable {
 //    @Cascade(org.hibernate.annotations.CascadeType.)
     // CascadeType.All (JPA) = CascadeType.All (Native Hibernate)
 //    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "employee", cascade = {CascadeType.DETACH, CascadeType.MERGE})
     private Spouse spouse;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.PERSIST)

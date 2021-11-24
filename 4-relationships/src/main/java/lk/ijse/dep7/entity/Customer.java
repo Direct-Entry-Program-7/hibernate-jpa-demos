@@ -13,7 +13,7 @@ public class Customer implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE})
     private List<Order> orderList;
 
     public Customer() {
