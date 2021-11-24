@@ -14,7 +14,7 @@ public class Customer implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST})
     private List<Order> orderList;
 
     public Customer() {
@@ -31,6 +31,7 @@ public class Customer implements Serializable {
         this.name = name;
         this.address = address;
         this.orderList = orderList;
+        orderList.forEach(o -> o.setCustomer(this));
     }
 
     public String getId() {
