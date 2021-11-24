@@ -12,12 +12,24 @@ public class Order2 implements Serializable {
     @Column(nullable = false)
     private Date date;
 
+    @ManyToOne
+    @JoinTable(name = "customer2_order2",
+            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))
+    private Customer2 customer;
+
     public Order2() {
     }
 
     public Order2(String id, Date date) {
         this.id = id;
         this.date = date;
+    }
+
+    public Order2(String id, Date date, Customer2 customer) {
+        this.id = id;
+        this.date = date;
+        this.customer = customer;
     }
 
     public String getId() {
@@ -34,6 +46,14 @@ public class Order2 implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Customer2 getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer2 customer) {
+        this.customer = customer;
     }
 
     @Override
