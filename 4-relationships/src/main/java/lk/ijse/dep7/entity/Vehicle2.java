@@ -11,12 +11,21 @@ public class Vehicle2 implements Serializable {
     @Column(nullable = false)
     private String type;
 
+    @OneToOne(mappedBy = "vehicle2", cascade = CascadeType.PERSIST)
+    private Vehicle2Employee2 vehicle2Employee2;
+
     public Vehicle2() {
     }
 
     public Vehicle2(String number, String type) {
         this.number = number;
         this.type = type;
+    }
+
+    public Vehicle2(String number, String type, Vehicle2Employee2 vehicle2Employee2) {
+        this.number = number;
+        this.type = type;
+        this.vehicle2Employee2 = vehicle2Employee2;
     }
 
     public String getNumber() {
@@ -42,4 +51,13 @@ public class Vehicle2 implements Serializable {
                 ", type='" + type + '\'' +
                 '}';
     }
+
+    public Vehicle2Employee2 getVehicle2Employee2() {
+        return vehicle2Employee2;
+    }
+
+//    public void setVehicle2Employee2(Vehicle2Employee2 vehicle2Employee2) {
+//        vehicle2Employee2.setVehicle2(this);
+//        this.vehicle2Employee2 = vehicle2Employee2;
+//    }
 }
