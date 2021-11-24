@@ -1,11 +1,14 @@
 package lk.ijse.dep7.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
 public class Vehicle2Employee2PK implements Serializable {
+    @Column(unique = true)
     private String number;
+    @Column(unique = true)
     private String id;
 
     public Vehicle2Employee2PK() {
