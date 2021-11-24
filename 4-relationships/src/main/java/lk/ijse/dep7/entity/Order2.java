@@ -12,7 +12,7 @@ public class Order2 implements Serializable {
     @Column(nullable = false)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "customer2_order2",
             joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))

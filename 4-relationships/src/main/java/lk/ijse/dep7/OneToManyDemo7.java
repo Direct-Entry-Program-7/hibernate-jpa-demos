@@ -28,11 +28,11 @@ public class OneToManyDemo7 {
             Order2 od002 = new Order2("OD002", Date.valueOf("2021-11-20"),c001);
             Order2 od003 = new Order2("OD003", Date.valueOf("2021-11-25"),c001);
 
-            session.save(c001);
+//            session.save(c001);
             session.save(c002);
             session.save(od001);
-            session.save(od002);
-            session.save(od003);
+            session.persist(od002);
+            session.persist(od003);
 
             session.getTransaction().commit();
 
