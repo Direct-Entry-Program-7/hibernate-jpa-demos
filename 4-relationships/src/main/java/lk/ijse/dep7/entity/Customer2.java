@@ -2,6 +2,7 @@ package lk.ijse.dep7.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -13,6 +14,8 @@ public class Customer2 implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
+    @OneToMany(mappedBy = "customer")
+    private List<Order2> orderList = new ArrayList<>();
 
     public Customer2() {
     }
@@ -21,6 +24,13 @@ public class Customer2 implements Serializable {
         this.id = id;
         this.name = name;
         this.address = address;
+    }
+
+    public Customer2(String id, String name, String address, List<Order2> orderList) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.orderList = orderList;
     }
 
     public String getId() {
@@ -56,4 +66,12 @@ public class Customer2 implements Serializable {
                 '}';
     }
 
+    public List<Order2> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order2> orderList) {
+        orderList.forEach(o -> o.setCustomer(this));
+        this.orderList = orderList;
+    }
 }
