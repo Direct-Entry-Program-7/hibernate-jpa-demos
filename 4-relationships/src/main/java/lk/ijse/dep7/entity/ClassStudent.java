@@ -1,9 +1,6 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -14,6 +11,12 @@ public class ClassStudent implements Serializable {
     private ClassStudentPK classStudentPK;
     @Column(nullable = false)
     private Date date;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="class_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Class classRef;
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="student_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Student student;
 
     public ClassStudent() {
     }
@@ -26,6 +29,21 @@ public class ClassStudent implements Serializable {
     public ClassStudent(String classId, String studentId, Date date) {
         this.classStudentPK = new ClassStudentPK(classId, studentId);
         this.date = date;
+    }
+
+    public ClassStudent(ClassStudentPK classStudentPK, Date date, Class classRef, Student student) {
+        this.classStudentPK = classStudentPK;
+        this.date = date;
+        this.classRef = classRef;
+        this.student = student;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public Class getClassRef() {
+        return classRef;
     }
 
     public ClassStudentPK getClassStudentPK() {
@@ -49,6 +67,8 @@ public class ClassStudent implements Serializable {
         return "ClassStudent{" +
                 "classStudentPK=" + classStudentPK +
                 ", date=" + date +
+                ", classRef=" + classRef +
+                ", student=" + student +
                 '}';
     }
 }
