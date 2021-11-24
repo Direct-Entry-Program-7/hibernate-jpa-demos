@@ -11,10 +11,10 @@ public class Vehicle2Employee2 implements Serializable {
     @EmbeddedId
     private Vehicle2Employee2PK vehicle2Employee2PK;
     private Date date;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="number", referencedColumnName = "number", insertable = false, updatable = false)
     private Vehicle2 vehicle2;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id", referencedColumnName = "id", insertable = false, updatable = false)
     private Employee2 employee2;
 
