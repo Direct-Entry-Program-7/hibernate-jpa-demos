@@ -31,7 +31,6 @@ public class Customer implements Serializable {
         this.name = name;
         this.address = address;
         this.orderList = orderList;
-        orderList.forEach(o -> o.setCustomer(this));
     }
 
     public String getId() {
@@ -79,5 +78,11 @@ public class Customer implements Serializable {
     public void addOrder(Order order){
         order.setCustomer(this);
         this.orderList.add(order);
+    }
+
+    // @PrePersist, @PostPersist, @PreRemove, @PostRemove, @PreLoad, @PostLoad
+    @PrePersist
+    private void beforePersist(){
+        orderList.forEach(o -> o.setCustomer(this));
     }
 }

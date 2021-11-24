@@ -22,9 +22,9 @@ public class OneToManyDemo6 {
             Customer c001 = session.get(Customer.class, "C001");
 
             List<Order> orderList = new ArrayList<>();
+            Customer c003 = new Customer("C003", "Dinusha", "Gampaha", orderList);
             orderList.add(new Order("OD004", Date.valueOf("2021-10-01"), null));
             orderList.add(new Order("OD005", Date.valueOf("2021-10-01"), c001));
-            Customer c003 = new Customer("C003", "Dinusha", "Gampaha", orderList);
 
             session.persist(c003);
 
