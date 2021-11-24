@@ -2,7 +2,6 @@ package lk.ijse.dep7.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -14,7 +13,7 @@ public class Customer implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
     private List<Order> orderList;
 
     public Customer() {
@@ -75,14 +74,16 @@ public class Customer implements Serializable {
         this.orderList = orderList;
     }
 
-    public void addOrder(Order order){
+    public void addOrder(Order order) {
         order.setCustomer(this);
         this.orderList.add(order);
     }
 
     // @PrePersist, @PostPersist, @PreRemove, @PostRemove, @PreLoad, @PostLoad, @PreUpdate, @PostUpdate
     @PrePersist
-    private void beforePersist(){
-        orderList.forEach(o -> o.setCustomer(this));
+    private void beforePersist() {
+        if (orderList != null) {
+            orderList.forEach(o -> o.setCustomer(this));
+        }
     }
 }
