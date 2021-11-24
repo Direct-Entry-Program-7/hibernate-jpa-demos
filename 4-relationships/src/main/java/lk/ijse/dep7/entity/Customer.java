@@ -1,10 +1,9 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table
 @Entity(name = "customer")
@@ -15,6 +14,8 @@ public class Customer implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orderList;
 
     public Customer() {
     }
@@ -23,6 +24,13 @@ public class Customer implements Serializable {
         this.id = id;
         this.name = name;
         this.address = address;
+    }
+
+    public Customer(String id, String name, String address, List<Order> orderList) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.orderList = orderList;
     }
 
     public String getId() {
@@ -56,5 +64,13 @@ public class Customer implements Serializable {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 }

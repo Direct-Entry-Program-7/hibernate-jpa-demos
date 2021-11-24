@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 
 import java.sql.Date;
 
-public class OneToManyDemo3 {
+public class OneToManyDemo4 {
 
     public static void main(String[] args) {
 
@@ -17,10 +17,11 @@ public class OneToManyDemo3 {
 
             session.beginTransaction();
 
-            Customer c002 = new Customer("C002", "Sovis", "Dehiwala");
-            Order od003 = new Order("OD003", Date.valueOf("2021-11-21"), c002);
+            Customer c001 = session.get(Customer.class, "C001");
+            c001.getOrderList().forEach(System.out::println);
 
-            session.save(od003);
+            Customer c002 = session.get(Customer.class, "C002");
+            c002.getOrderList().forEach(System.out::println);
 
             session.getTransaction().commit();
 
