@@ -74,4 +74,14 @@ public class Customer2 implements Serializable {
         orderList.forEach(o -> o.setCustomer(this));
         this.orderList = orderList;
     }
+
+    public void addOrder(Order2 order2){
+        order2.setCustomer(this);
+        this.orderList.add(order2);
+    }
+
+    public void removeOrder(Order2 order2){
+        this.orderList.remove(order2);
+        order2.setCustomer(null);
+    }
 }

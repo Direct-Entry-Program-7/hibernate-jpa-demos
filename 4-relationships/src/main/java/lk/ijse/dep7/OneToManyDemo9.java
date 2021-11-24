@@ -26,10 +26,16 @@ public class OneToManyDemo9 {
             // If it says by the I.E, then it is not going to insert a new record
             //c001.getOrderList().add(od001);
 
-            ArrayList<Order2> orderList = new ArrayList<>();
-            orderList.addAll(c001.getOrderList());  // OD002
-            orderList.add(od001);
-            c001.setOrderList(orderList);
+//            ArrayList<Order2> orderList = new ArrayList<>();
+//            orderList.addAll(c001.getOrderList());  // OD002
+//            orderList.add(od001);
+//            c001.setOrderList(orderList);
+
+//            c001.addOrder(od001);
+//            c001.getOrderList().add(od001);
+
+//            c001.getOrderList().remove(od001);
+            c001.removeOrder(od001);
 
             session.getTransaction().commit();
 
