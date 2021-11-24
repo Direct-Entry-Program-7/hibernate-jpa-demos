@@ -29,11 +29,14 @@ public class OneToManyDemo5 {
             Order od001 = session.get(Order.class, "OD001");
             System.out.println(od001.getCustomer());
 
-            List<Order> orders = new ArrayList<>();
-            orders.addAll(c001.getOrderList());
-            orders.add(od001);
+            //c001.getOrderList().add(od001);
+            c001.addOrder(od001);
 
-            c001.setOrderList(orders);
+//            List<Order> orders = new ArrayList<>();
+//            orders.addAll(c001.getOrderList());
+//            orders.add(od001);
+//
+//            c001.setOrderList(orders);
 
             session.getTransaction().commit();
 
