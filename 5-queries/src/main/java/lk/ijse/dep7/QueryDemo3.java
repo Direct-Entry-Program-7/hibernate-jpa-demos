@@ -19,13 +19,13 @@ public class QueryDemo3 {
             /* Native Hibernate API */
             NativeQuery<Customer> nativeQuery = session.createNativeQuery("SELECT * FROM customer", Customer.class);
 
-            /* JPA */
+            /* JPA API */
             Query nativeQueryInJPA = session.createNativeQuery("SELECT * FROM customer", Customer.class);
 
             /* Native Hibernate API */
 //            List<Customer> list = nativeQuery.list();
 
-            /* Native Hibernate API */
+            /* JPA API */
             List<Customer> list = nativeQueryInJPA.getResultList();
 
             Customer c001 = list.get(0);
