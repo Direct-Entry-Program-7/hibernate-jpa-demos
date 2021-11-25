@@ -3,6 +3,7 @@ package lk.ijse.dep7.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "actor")
 @Entity
@@ -12,21 +13,21 @@ public class Actor extends SuperClass implements Serializable {
     @JoinTable(name = "actor_movie",
             joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"))
-    private List<Movie> movieList;
+    private Set<Movie> movieList;
 
     public Actor() {
     }
 
-    public Actor(String id, String name, List<Movie> movieList) {
+    public Actor(String id, String name, Set<Movie> movieList) {
         super(id, name);
         this.movieList = movieList;
     }
 
-    public List<Movie> getMovieList() {
+    public Set<Movie> getMovieList() {
         return movieList;
     }
 
-    public void setMovieList(List<Movie> movieList) {
+    public void setMovieList(Set<Movie> movieList) {
         this.movieList = movieList;
     }
 
