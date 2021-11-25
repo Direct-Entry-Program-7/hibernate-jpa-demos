@@ -15,11 +15,11 @@ public class BillDetail implements Serializable {
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "item_code", referencedColumnName = "code", insertable = false, updatable = false)
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "bill_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Bill bill;
 
