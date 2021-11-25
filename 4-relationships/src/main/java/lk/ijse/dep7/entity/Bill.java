@@ -1,11 +1,9 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Table(name = "bill")
 @Entity
@@ -16,12 +14,21 @@ public class Bill implements Serializable {
     @Column(nullable = false)
     private Date date;
 
+    @OneToMany(mappedBy = "bill", cascade = {CascadeType.PERSIST})
+    private List<BillDetail> billDetailList;
+
     public Bill() {
     }
 
     public Bill(String id, Date date) {
         this.id = id;
         this.date = date;
+    }
+
+    public Bill(String id, Date date, List<BillDetail> billDetailList) {
+        this.id = id;
+        this.date = date;
+        this.billDetailList = billDetailList;
     }
 
     public String getId() {
@@ -46,5 +53,16 @@ public class Bill implements Serializable {
                 "id='" + id + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    public List<BillDetail> getBillDetailList() {
+        return billDetailList;
+    }
+
+    @PrePersist
+    private void beforePersist() {
+        if (billDetailList != null) {
+            billDetailList.forEach(bd -> bd.getBillDetailPK().setBillId(this.id));
+        }
     }
 }
