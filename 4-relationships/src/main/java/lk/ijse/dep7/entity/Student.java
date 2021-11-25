@@ -1,9 +1,6 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -15,6 +12,8 @@ public class Student implements Serializable {
     private String name;
     @Column(nullable = false)
     private String address;
+    @OneToOne(mappedBy = "student", cascade = {CascadeType.PERSIST})
+    private ClassStudent classStudent;
 
     public Student() {
     }
@@ -23,6 +22,14 @@ public class Student implements Serializable {
         this.id = id;
         this.name = name;
         this.address = address;
+    }
+
+    public Student(String id, String name, String address, ClassStudent classStudent) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.classStudent = classStudent;
+        this.classStudent.getClassStudentPK().setStudentId(this.id);
     }
 
     public String getId() {
@@ -57,4 +64,9 @@ public class Student implements Serializable {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+    public ClassStudent getClassStudent() {
+        return classStudent;
+    }
+
 }
