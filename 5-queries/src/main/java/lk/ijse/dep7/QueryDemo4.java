@@ -20,7 +20,7 @@ public class QueryDemo4 {
             Object[] customer1 = (Object[]) query1.uniqueResult();
             System.out.println(customer1[0]);
 
-            /* Native Hibernate API, JPA API */
+            /* Native Hibernate API (NativeQuery<T>), JPA API (Query) */
             NativeQuery<Customer> query2 = session.createNativeQuery("SELECT * FROM customer WHERE id='C001'", Customer.class);
             Customer customer2 = query2.uniqueResult(); // getSingleResult()
             System.out.println(customer2);
