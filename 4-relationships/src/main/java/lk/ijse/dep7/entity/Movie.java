@@ -1,8 +1,6 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.List;
 @Entity
 public class Movie extends SuperClass implements Serializable {
 
-    @ManyToMany(mappedBy = "movieList")
+    @ManyToMany(mappedBy = "movieList", cascade = {CascadeType.PERSIST})
     private List<Actor> actorList = new ArrayList<>();
 
     public Movie() {
@@ -43,5 +41,12 @@ public class Movie extends SuperClass implements Serializable {
     public void removeActor(Actor actor){
         actor.getMovieList().remove(this);
         this.actorList.remove(actor);
+    }
+
+    @PrePersist
+    private void beforePersist(){
+        if (actorList != null){
+            this.actorList.forEach(actor -> actor.getMovieList().add(this));
+        }
     }
 }
