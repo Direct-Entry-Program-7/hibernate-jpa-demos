@@ -14,7 +14,7 @@ public class Bill implements Serializable {
     @Column(nullable = false)
     private Date date;
 
-    @OneToMany(mappedBy = "bill", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "bill", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private List<BillDetail> billDetailList;
 
     public Bill() {

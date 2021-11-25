@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 public class Movie extends SuperClass implements Serializable {
 
-    @ManyToMany(mappedBy = "movieList", cascade = {CascadeType.PERSIST})
+    @ManyToMany(mappedBy = "movieList", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private List<Actor> actorList = new ArrayList<>();
 
     public Movie() {

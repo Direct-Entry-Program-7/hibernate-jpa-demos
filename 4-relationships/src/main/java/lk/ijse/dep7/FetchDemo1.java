@@ -1,28 +1,26 @@
 package lk.ijse.dep7;
 
-import lk.ijse.dep7.entity.Bill;
-import lk.ijse.dep7.entity.BillDetail;
-import lk.ijse.dep7.entity.Item;
+import lk.ijse.dep7.entity.Actor;
+import lk.ijse.dep7.entity.Movie;
 import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManyToManyDemo7 {
+public class FetchDemo1 {
 
     public static void main(String[] args) {
 
         try(SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession()){
+            Session session = sessionFactory.openSession()){
 
             session.beginTransaction();
 
-            Bill b001 = session.find(Bill.class, "B001");
-            System.out.println(b001.getDate());
-            System.out.println(b001.getBillDetailList().get(0).getQty());
+            Movie m001 = session.get(Movie.class, "M001");
+            System.out.println(m001.getName());
+            //System.out.println(m001.getActorList().size());
 
             session.getTransaction().commit();
 

@@ -13,7 +13,7 @@ public class Spouse implements Serializable {
     private String id;
     @Column(nullable = false)
     private String name;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="employee_id", referencedColumnName = "id", nullable = false, unique = true)
     private Employee employee;
 
