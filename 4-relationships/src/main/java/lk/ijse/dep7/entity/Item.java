@@ -1,11 +1,9 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Table(name = "item")
 @Entity
@@ -20,6 +18,9 @@ public class Item implements Serializable {
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
+    @OneToMany(mappedBy = "item", cascade = {CascadeType.PERSIST})
+    private List<BillDetail> billDetailList;
+
     public Item() {
     }
 
@@ -28,6 +29,14 @@ public class Item implements Serializable {
         this.description = description;
         this.qtyOnHand = qtyOnHand;
         this.unitPrice = unitPrice;
+    }
+
+    public Item(String code, String description, int qtyOnHand, BigDecimal unitPrice, List<BillDetail> billDetailList) {
+        this.code = code;
+        this.description = description;
+        this.qtyOnHand = qtyOnHand;
+        this.unitPrice = unitPrice;
+        this.billDetailList = billDetailList;
     }
 
     public String getCode() {
@@ -71,4 +80,16 @@ public class Item implements Serializable {
                 ", unitPrice=" + unitPrice +
                 '}';
     }
+
+    public List<BillDetail> getBillDetailList() {
+        return billDetailList;
+    }
+
+    @PrePersist
+    private void beforePersist() {
+        if (billDetailList != null) {
+            billDetailList.forEach(bd -> bd.getBillDetailPK().setItemCode(this.code));
+        }
+    }
+
 }
