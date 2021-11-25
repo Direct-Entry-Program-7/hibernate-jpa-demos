@@ -20,7 +20,7 @@ public class QueryDemo7 {
 //
 //            System.out.println("Has row been updated? " + (affectedRows == 1));
 
-            int affectedRows = session.createQuery("DELETE FROM lk.ijse.dep7.entity.Customer c WHERE c.id=?1")
+            int affectedRows = session.createQuery("DELETE FROM Customer c WHERE c.id=?1")
                     .setParameter(1, "C003").executeUpdate();
 
             System.out.println("Has row been deleted? " + (affectedRows == 1));
