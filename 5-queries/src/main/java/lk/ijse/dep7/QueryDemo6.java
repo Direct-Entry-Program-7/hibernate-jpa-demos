@@ -15,12 +15,12 @@ public class QueryDemo6 {
 
             session.beginTransaction();
 
-            NativeQuery query = session.createNativeQuery("INSERT INTO customer VALUES (:id, :name, :address)");
+            NativeQuery query = session.createNativeQuery("INSERT INTO customer (id, name, address) VALUES (:id, :name, :address)");
             query.setParameter("id", "C004");
             query.setParameter("name", "Aruni");
             query.setParameter("address", "Matara");
 
-//            NativeQuery query = session.createNativeQuery("INSERT INTO customer VALUES (?3, ?2, ?1)");
+//            NativeQuery query = session.createNativeQuery("INSERT INTO customer (id, name, address) VALUES (?3, ?2, ?1)");
 //            query.setParameter(1, "Panadura");
 //            query.setParameter(2, "Dulanga");
 //            query.setParameter(3, "C003");
