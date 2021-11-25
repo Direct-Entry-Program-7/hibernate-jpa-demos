@@ -12,7 +12,7 @@ public class Class implements Serializable {
     private String id;
     @Column(nullable = false)
     private String description;
-    @OneToMany(mappedBy = "classRef")
+    @OneToMany(mappedBy = "classRef", cascade = {CascadeType.PERSIST})
     private List<ClassStudent> classStudentList;
 
     public Class() {
@@ -57,7 +57,14 @@ public class Class implements Serializable {
         return classStudentList;
     }
 
-    public void setClassStudentList(List<ClassStudent> classStudentList) {
-        this.classStudentList = classStudentList;
+    @PrePersist
+    private void beforePersist(){
+        if (this.classStudentList != null){
+            this.classStudentList.forEach(cs -> cs.getClassStudentPK().setClassId(id));
+        }
     }
+
+//    public void setClassStudentList(List<ClassStudent> classStudentList) {
+//        this.classStudentList = classStudentList;
+//    }
 }
