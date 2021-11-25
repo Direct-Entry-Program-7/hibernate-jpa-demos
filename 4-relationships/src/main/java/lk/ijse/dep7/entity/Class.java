@@ -1,10 +1,8 @@
 package lk.ijse.dep7.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Table(name = "class")
 @Entity
@@ -14,6 +12,8 @@ public class Class implements Serializable {
     private String id;
     @Column(nullable = false)
     private String description;
+    @OneToMany(mappedBy = "classRef")
+    private List<ClassStudent> classStudentList;
 
     public Class() {
     }
@@ -21,6 +21,12 @@ public class Class implements Serializable {
     public Class(String id, String description) {
         this.id = id;
         this.description = description;
+    }
+
+    public Class(String id, String description, List<ClassStudent> classStudentList) {
+        this.id = id;
+        this.description = description;
+        this.classStudentList = classStudentList;
     }
 
     public String getId() {
@@ -45,5 +51,13 @@ public class Class implements Serializable {
                 "id='" + id + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public List<ClassStudent> getClassStudentList() {
+        return classStudentList;
+    }
+
+    public void setClassStudentList(List<ClassStudent> classStudentList) {
+        this.classStudentList = classStudentList;
     }
 }
