@@ -5,5 +5,10 @@
              version="3.0">
   <persistence-unit name="default">
 
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+<!--    <class>lk.ijse.dep7.entity.Parent</class>-->
+<!--    <class>lk.ijse.dep7.entity.Teacher</class>-->
+
   </persistence-unit>
 </persistence>
