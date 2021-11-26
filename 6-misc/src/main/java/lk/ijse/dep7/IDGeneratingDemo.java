@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.BlobProxy;
 
+import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +25,8 @@ public class IDGeneratingDemo {
             session.beginTransaction();
 
             Path path = Paths.get("/home/ranjith-suranga/Desktop/chandima.png");
-            Blob picture = BlobProxy.generateProxy(Files.readAllBytes(path));
+//            Blob serialBlob = new SerialBlob(Files.readAllBytes(path));   (JPA)
+            Blob picture = BlobProxy.generateProxy(Files.readAllBytes(path)); // Native Hibernate
 
 //            for (int i = 0; i < 8; i++) {
                 Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);
