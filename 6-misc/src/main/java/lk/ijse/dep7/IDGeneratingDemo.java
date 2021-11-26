@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Blob;
+import java.util.Date;
 
 public class IDGeneratingDemo {
 
@@ -29,7 +30,7 @@ public class IDGeneratingDemo {
             Blob picture = BlobProxy.generateProxy(Files.readAllBytes(path)); // Native Hibernate
 
 //            for (int i = 0; i < 8; i++) {
-                Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);
+                Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED, new Date());
                 Parent parent = new Parent("Chandima", "Galle", "011-1234567", picture);
                 session.save(parent);
                 session.save(teacher);

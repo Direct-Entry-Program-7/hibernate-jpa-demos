@@ -2,6 +2,7 @@ package lk.ijse.dep7.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "teacher")
@@ -29,38 +30,46 @@ public class Teacher implements Serializable {
     @Column(nullable = false)
     private MarriedStatus marriedStatus;
 
-    @AttributeOverride(name="name", column = @Column(name="full_name", nullable = false))
-    @AttributeOverride(name="contactNumber", column =  @Column(name="telephone", nullable = false))
+    @AttributeOverride(name = "name", column = @Column(name = "full_name", nullable = false))
+    @AttributeOverride(name = "contactNumber", column = @Column(name = "telephone", nullable = false))
     @Embedded
     private Contact contact;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "registered_date")
+    private Date registeredDate;
 
     public Teacher() {
     }
 
-    public Teacher(Gender gender, MarriedStatus marriedStatus, Contact contact) {
+    public Teacher(Gender gender, MarriedStatus marriedStatus, Contact contact, Date registeredDate) {
         this.gender = gender;
         this.marriedStatus = marriedStatus;
         this.contact = contact;
+        this.registeredDate = registeredDate;
     }
 
-    public Teacher(String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
+    public Teacher(String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus, Date registeredDate) {
         this.gender = gender;
         this.marriedStatus = marriedStatus;
         this.contact = new Contact(name, address, contactNumber);
+        this.registeredDate = registeredDate;
     }
 
-    public Teacher(int id, Gender gender, MarriedStatus marriedStatus, Contact contact) {
+    public Teacher(int id, Gender gender, MarriedStatus marriedStatus, Contact contact, Date registeredDate) {
         this.id = id;
         this.gender = gender;
         this.marriedStatus = marriedStatus;
         this.contact = contact;
+        this.registeredDate = registeredDate;
     }
 
-    public Teacher(int id, String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
+    public Teacher(int id, String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus, Date registeredDate) {
         this.id = id;
         this.gender = gender;
         this.marriedStatus = marriedStatus;
-        this.contact =  new Contact(name, address, contactNumber);
+        this.contact = new Contact(name, address, contactNumber);
+        this.registeredDate = registeredDate;
     }
 
     public int getId() {
@@ -95,6 +104,14 @@ public class Teacher implements Serializable {
         this.contact = contact;
     }
 
+    public Date getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
@@ -102,6 +119,7 @@ public class Teacher implements Serializable {
                 ", gender=" + gender +
                 ", marriedStatus=" + marriedStatus +
                 ", contact=" + contact +
+                ", registeredDate=" + registeredDate +
                 '}';
     }
 }
