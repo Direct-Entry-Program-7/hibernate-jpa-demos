@@ -41,6 +41,8 @@ public class IDGeneratingDemo {
             System.out.println("Failed to read the picture");
         }
 
+        sf.close();
+
     }
 
 }
