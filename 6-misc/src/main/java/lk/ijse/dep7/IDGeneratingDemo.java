@@ -7,6 +7,7 @@ import lk.ijse.dep7.entity.Teacher;
 import lk.ijse.dep7.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.jdbc.BlobProxy;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,12 +23,12 @@ public class IDGeneratingDemo {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
 
-            Path path = Paths.get("/home/ranjith-suranga/Desktop/pethum.jpeg");
-            Blob picture = Files.readAllBytes(path);
+            Path path = Paths.get("/home/ranjith-suranga/Desktop/chandima.png");
+            Blob picture = BlobProxy.generateProxy(Files.readAllBytes(path));
 
 //            for (int i = 0; i < 8; i++) {
                 Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);
-                Parent parent = new Parent("Pethum", "Galle", "011-1234567", picture);
+                Parent parent = new Parent("Chandima", "Galle", "011-1234567", picture);
                 session.save(parent);
                 session.save(teacher);
 //            }
