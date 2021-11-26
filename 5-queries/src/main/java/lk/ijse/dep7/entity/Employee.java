@@ -3,6 +3,7 @@ package lk.ijse.dep7.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@NamedNativeQuery(name = "getEmployeeNames", query = "SELECT name FROM employee")
 @Entity
 @Table(name = "employee")
 public class Employee implements Serializable {
@@ -13,7 +14,7 @@ public class Employee implements Serializable {
     @Column(nullable = false)
     private String address;
 
-//    @Cascade(org.hibernate.annotations.CascadeType.)
+    //    @Cascade(org.hibernate.annotations.CascadeType.)
     // CascadeType.All (JPA) = CascadeType.All (Native Hibernate)
 //    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @OneToOne(mappedBy = "employee", cascade = {CascadeType.DETACH, CascadeType.MERGE})

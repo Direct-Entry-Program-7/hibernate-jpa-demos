@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+@NamedQuery(name ="findCustomersByAddress", query="SELECT c FROM Customer c WHERE c.address LIKE CONCAT('%', :q, '%')")
+@NamedQuery(name ="findCustomersByName", query="SELECT c FROM Customer c WHERE c.name LIKE CONCAT('%', ?1, '%')")
 @Table(name = "customer")
 @Entity
 public class Customer implements Serializable {
