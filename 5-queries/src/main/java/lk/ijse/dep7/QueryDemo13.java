@@ -36,6 +36,16 @@ public class QueryDemo13 {
 
             customerList3.forEach(System.out::println);
 
+            System.out.println("============================ Named Native Queries ==========================");
+
+            /* Native Hibernate API */
+            List employeeNameList1 = session.getNamedNativeQuery("getEmployeeNames").list();
+            employeeNameList1.forEach(System.out::println);
+
+            /* JPA API */
+            List employeeNameList2 = session.createNamedQuery("getEmployeeNames").list();
+            employeeNameList2.forEach(System.out::println);
+
             session.getTransaction().commit();
 
         }
