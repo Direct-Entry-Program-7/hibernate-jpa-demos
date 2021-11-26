@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class IDGeneratingDemo {
+public class ReadBlob {
 
     public static void main(String[] args) {
 
@@ -21,19 +21,14 @@ public class IDGeneratingDemo {
         try (Session session = sf.openSession()) {
             session.beginTransaction();
 
-            Path path = Paths.get("/home/ranjith-suranga/Desktop/pethum.jpeg");
-            byte[] picture = Files.readAllBytes(path);
+            Parent parent = session.get(Parent.class, 1);
 
-//            for (int i = 0; i < 8; i++) {
-                Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);
-                Parent parent = new Parent("Pethum", "Galle", "011-1234567", picture);
-                session.save(parent);
-                session.save(teacher);
-//            }
+            Path path = Paths.get("/home/ranjith-suranga/Desktop/output/pethum-picture.jpeg");
+            Files.write(path, parent.getPicture());
 
             session.getTransaction().commit();
         } catch (IOException e) {
-            System.out.println("Failed to read the picture");
+            System.out.println("Failed to write the picture");
         }
 
     }
