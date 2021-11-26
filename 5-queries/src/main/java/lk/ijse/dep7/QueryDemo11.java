@@ -22,7 +22,12 @@ public class QueryDemo11 {
 //            List<Object[]> employeeDetailList = session.createQuery("SELECT e.id, e.name, e.address, s.name as spouseName FROM Employee e INNER JOIN Spouse s ON e.id = s.employee.id").list();
 //            employeeDetailList.forEach(System.out::println);
 
-            List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Employee e INNER JOIN Spouse s ON e.id = s.employee.id").list();
+//            List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Employee e INNER JOIN Spouse s ON e.id = s.employee.id").list();
+//                List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Employee e INNER JOIN Spouse s ON e.id = s.employee").list();
+//            List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Employee e INNER JOIN Spouse s ON e = s.employee.id").list();
+//            List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Employee e INNER JOIN Spouse s ON e = s.employee").list();
+//            List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Employee e INNER JOIN e.spouse s").list();
+            List<CustomEntity> employeeDetailList = session.createQuery("SELECT new lk.ijse.dep7.entity.CustomEntity(e.id, e.name, e.address, s.name) FROM Spouse s INNER JOIN s.employee e").list();
             employeeDetailList.forEach(System.out::println);
 
             session.getTransaction().commit();
