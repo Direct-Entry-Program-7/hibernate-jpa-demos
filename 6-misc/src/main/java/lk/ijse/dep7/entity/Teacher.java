@@ -28,6 +28,9 @@ public class Teacher implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private MarriedStatus marriedStatus;
+
+    @AttributeOverride(name="name", column = @Column(name="full_name", nullable = false))
+    @AttributeOverride(name="contactNumber", column =  @Column(name="telephone", nullable = false))
     @Embedded
     private Contact contact;
 
