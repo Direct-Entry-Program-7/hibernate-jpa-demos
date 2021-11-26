@@ -1,5 +1,6 @@
 package lk.ijse.dep7.util;
 
+import lk.ijse.dep7.entity.Parent;
 import lk.ijse.dep7.entity.Teacher;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -19,6 +20,7 @@ public class HibernateUtil {
 
         Metadata metadata = new MetadataSources(standardRegistry)
                 .addAnnotatedClass(Teacher.class)
+                .addAnnotatedClass(Parent.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();

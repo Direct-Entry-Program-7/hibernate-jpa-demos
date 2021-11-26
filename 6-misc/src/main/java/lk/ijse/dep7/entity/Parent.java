@@ -3,56 +3,45 @@ package lk.ijse.dep7.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Table(name = "parent")
 @Entity
-@Table(name = "teacher")
-public class Teacher implements Serializable {
-
-    @SequenceGenerator(name = "seq1", sequenceName = "teacher_seq", initialValue = 1, allocationSize = 1)
-    @SequenceGenerator(name = "seq2", sequenceName = "teacher_seq2", initialValue = 10, allocationSize = 10)
-    @SequenceGenerator(name = "seq3", sequenceName = "teacher_seq2", initialValue = 1, allocationSize = 5)
+public class Parent implements Serializable {
 
     @TableGenerator(name = "tbl",
             table = "incremented_id",
             pkColumnName = "table_name",
             valueColumnName = "value",
-            pkColumnValue = "teacher",
+            pkColumnValue = "parent",
             initialValue = 0,
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl")
+    @SequenceGenerator(name = "seq2", sequenceName = "parent_seq", initialValue = 1, allocationSize =  1)
+
+    //@GeneratedValue(strategy = GenerationType.TABLE, generator = "seq2")
     @Id
     private int id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String address;
-    @Column(name = "contact_number", nullable = false)
+    @Column(nullable = false, name = "contact_number")
     private String contactNumber;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Gender gender;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(nullable = false)
-    private MarriedStatus marriedStatus;
 
-    public Teacher() {
+    public Parent() {
     }
 
-    public Teacher(String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
+    public Parent(String name, String address, String contactNumber) {
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
-        this.gender = gender;
-        this.marriedStatus = marriedStatus;
     }
 
-    public Teacher(int id, String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
+    public Parent(int id, String name, String address, String contactNumber) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
-        this.gender = gender;
-        this.marriedStatus = marriedStatus;
     }
 
     public int getId() {
@@ -87,31 +76,13 @@ public class Teacher implements Serializable {
         this.contactNumber = contactNumber;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public MarriedStatus getMarriedStatus() {
-        return marriedStatus;
-    }
-
-    public void setMarriedStatus(MarriedStatus marriedStatus) {
-        this.marriedStatus = marriedStatus;
-    }
-
     @Override
     public String toString() {
-        return "Teacher{" +
+        return "Parent{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
-                ", gender=" + gender +
-                ", marriedStatus=" + marriedStatus +
                 '}';
     }
 }
