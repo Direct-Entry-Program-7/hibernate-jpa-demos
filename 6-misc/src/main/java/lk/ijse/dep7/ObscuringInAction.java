@@ -10,7 +10,7 @@ public class ObscuringInAction {
 
     public static void main(String[] args) throws Exception{
 
-//        A.i = 10;
+        //A.i = 10;
 
     }
 
