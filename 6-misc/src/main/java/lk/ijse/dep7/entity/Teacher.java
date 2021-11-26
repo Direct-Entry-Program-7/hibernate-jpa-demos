@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher extends Contact implements Serializable {
+public class Teacher implements Serializable {
 
 //    @SequenceGenerator(name = "seq1", sequenceName = "teacher_seq", initialValue = 1, allocationSize = 1)
 //    @SequenceGenerator(name = "seq2", sequenceName = "teacher_seq2", initialValue = 10, allocationSize = 10)
@@ -28,25 +28,36 @@ public class Teacher extends Contact implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private MarriedStatus marriedStatus;
+    @Embedded
+    private Contact contact;
 
     public Teacher() {
     }
 
-    public Teacher(String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
-        this.name = name;
-        this.address = address;
-        this.contactNumber = contactNumber;
+    public Teacher(Gender gender, MarriedStatus marriedStatus, Contact contact) {
         this.gender = gender;
         this.marriedStatus = marriedStatus;
+        this.contact = contact;
+    }
+
+    public Teacher(String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
+        this.gender = gender;
+        this.marriedStatus = marriedStatus;
+        this.contact = new Contact(name, address, contactNumber);
+    }
+
+    public Teacher(int id, Gender gender, MarriedStatus marriedStatus, Contact contact) {
+        this.id = id;
+        this.gender = gender;
+        this.marriedStatus = marriedStatus;
+        this.contact = contact;
     }
 
     public Teacher(int id, String name, String address, String contactNumber, Gender gender, MarriedStatus marriedStatus) {
         this.id = id;
-        this.name = name;
-        this.address = address;
-        this.contactNumber = contactNumber;
         this.gender = gender;
         this.marriedStatus = marriedStatus;
+        this.contact =  new Contact(name, address, contactNumber);
     }
 
     public int getId() {
@@ -73,15 +84,21 @@ public class Teacher extends Contact implements Serializable {
         this.marriedStatus = marriedStatus;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
                 ", gender=" + gender +
                 ", marriedStatus=" + marriedStatus +
+                ", contact=" + contact +
                 '}';
     }
 }
