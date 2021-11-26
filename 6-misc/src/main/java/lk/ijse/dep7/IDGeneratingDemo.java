@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Blob;
 
 public class IDGeneratingDemo {
 
@@ -22,7 +23,7 @@ public class IDGeneratingDemo {
             session.beginTransaction();
 
             Path path = Paths.get("/home/ranjith-suranga/Desktop/pethum.jpeg");
-            byte[] picture = Files.readAllBytes(path);
+            Blob picture = Files.readAllBytes(path);
 
 //            for (int i = 0; i < 8; i++) {
                 Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);

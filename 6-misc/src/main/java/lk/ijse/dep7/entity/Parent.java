@@ -2,6 +2,7 @@ package lk.ijse.dep7.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Blob;
 
 @Table(name = "parent")
 @Entity
@@ -24,28 +25,28 @@ public class Parent implements Serializable {
     @Embedded
     private Contact contact;
     @Lob
-    private byte[] picture;
+    private Blob picture;
 
     public Parent() {
     }
 
-    public Parent(Contact contact, byte[] picture) {
+    public Parent(Contact contact, Blob picture) {
         this.contact = contact;
         this.picture = picture;
     }
 
-    public Parent(String name, String address, String contactNumber, byte[] picture) {
+    public Parent(String name, String address, String contactNumber, Blob picture) {
         this.contact = new Contact(name, address, contactNumber);
         this.picture = picture;
     }
 
-    public Parent(int id, Contact contact, byte[] picture) {
+    public Parent(int id, Contact contact, Blob picture) {
         this.id = id;
         this.contact = contact;
         this.picture = picture;
     }
 
-    public Parent(int id, String name, String address, String contactNumber, byte[] picture) {
+    public Parent(int id, String name, String address, String contactNumber, Blob picture) {
         this.id = id;
         this.contact = new Contact(name, address, contactNumber);
         this.picture = picture;
@@ -75,11 +76,11 @@ public class Parent implements Serializable {
                 '}';
     }
 
-    public byte[] getPicture() {
+    public Blob getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(Blob picture) {
         this.picture = picture;
     }
 }
