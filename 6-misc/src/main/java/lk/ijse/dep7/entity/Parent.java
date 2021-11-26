@@ -23,26 +23,32 @@ public class Parent implements Serializable {
     private int id;
     @Embedded
     private Contact contact;
+    @Lob
+    private byte[] picture;
 
     public Parent() {
     }
 
-    public Parent(Contact contact) {
+    public Parent(Contact contact, byte[] picture) {
         this.contact = contact;
+        this.picture = picture;
     }
 
-    public Parent(String name, String address, String contactNumber){
+    public Parent(String name, String address, String contactNumber, byte[] picture) {
         this.contact = new Contact(name, address, contactNumber);
+        this.picture = picture;
     }
 
-    public Parent(int id, Contact contact) {
+    public Parent(int id, Contact contact, byte[] picture) {
         this.id = id;
         this.contact = contact;
+        this.picture = picture;
     }
 
-    public Parent(int id, String name, String address, String contactNumber){
+    public Parent(int id, String name, String address, String contactNumber, byte[] picture) {
         this.id = id;
         this.contact = new Contact(name, address, contactNumber);
+        this.picture = picture;
     }
 
     public int getId() {
@@ -67,5 +73,13 @@ public class Parent implements Serializable {
                 "id=" + id +
                 ", contact=" + contact +
                 '}';
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 }
