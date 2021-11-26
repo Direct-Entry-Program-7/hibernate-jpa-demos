@@ -16,32 +16,33 @@ public class Parent implements Serializable {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl")
-    @SequenceGenerator(name = "seq2", sequenceName = "parent_seq", initialValue = 1, allocationSize =  1)
 
-    //@GeneratedValue(strategy = GenerationType.TABLE, generator = "seq2")
+//    @SequenceGenerator(name = "seq2", sequenceName = "parent_seq", initialValue = 1, allocationSize =  1)
+//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "seq2")
     @Id
     private int id;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String address;
-    @Column(nullable = false, name = "contact_number")
-    private String contactNumber;
+    @Embedded
+    private Contact contact;
 
     public Parent() {
     }
 
-    public Parent(String name, String address, String contactNumber) {
-        this.name = name;
-        this.address = address;
-        this.contactNumber = contactNumber;
+    public Parent(Contact contact) {
+        this.contact = contact;
     }
 
-    public Parent(int id, String name, String address, String contactNumber) {
+    public Parent(String name, String address, String contactNumber){
+        this.contact = new Contact(name, address, contactNumber);
+    }
+
+    public Parent(int id, Contact contact) {
         this.id = id;
-        this.name = name;
-        this.address = address;
-        this.contactNumber = contactNumber;
+        this.contact = contact;
+    }
+
+    public Parent(int id, String name, String address, String contactNumber){
+        this.id = id;
+        this.contact = new Contact(name, address, contactNumber);
     }
 
     public int getId() {
@@ -52,37 +53,19 @@ public class Parent implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     @Override
     public String toString() {
         return "Parent{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
+                ", contact=" + contact +
                 '}';
     }
 }

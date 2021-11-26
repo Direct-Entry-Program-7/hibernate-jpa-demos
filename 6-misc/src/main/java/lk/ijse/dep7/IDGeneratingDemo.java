@@ -17,10 +17,10 @@ public class IDGeneratingDemo {
             session.beginTransaction();
 
 //            for (int i = 0; i < 8; i++) {
-                Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);
-                Parent parent = new Parent("Gayal", "Galle", "011-1234567");
-                session.save(parent);
-                session.save(teacher);
+//                Teacher teacher = new Teacher("Sovis", "Moratuwa", "077-123457", Gender.MALE, MarriedStatus.MARRIED);
+//                Parent parent = new Parent("Gayal", "Galle", "011-1234567");
+//                session.save(parent);
+//                session.save(teacher);
 //            }
 
             session.getTransaction().commit();
