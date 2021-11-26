@@ -16,7 +16,7 @@ public class HelloJpa {
         try {
             em.getTransaction().begin();
 
-            Parent parent = new Parent("Dinusha", "Panadura", "123456", null);
+            Parent parent = new Parent("Dinusha Jayawardena", "Panadura", "123456", null);
             em.persist(parent);
 
             em.getTransaction().commit();
